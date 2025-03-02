@@ -88,7 +88,7 @@ public class cruise {
 
     // toString
     public String toString() {
-        return getCruiseID()  + " | " + getRoute()  + " | " + "$"+ getTicketPrice()   + " | " + getTicketSold()   + " | "+  "$"+ totalEarning();
+        return this.getCruiseID()  + " | " + this.getRoute()  + " | " + "$"+ this.getTicketPrice()   + " | " + this.getTicketSold()   + " | "+  "$"+ this.totalEarning();
     };
 
 }

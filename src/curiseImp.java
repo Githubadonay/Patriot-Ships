@@ -122,18 +122,17 @@ public class curiseImp {
     }
 
     public static void displayAllCruise(cruise[] allCruise) {
-        int totalEarning = 0;
+        int overAllEarning = 0;
         int currentNumOfCruise = cruise.getCurrentNumOfCruise();
         String output = "** Patriot Cruises **\n\n\nCruise ID | Cruise Route | Ticket Cost | Ticket sold | Total Earning\n";
         for (int i = 0; i < currentNumOfCruise; i++) {
-            if (allCruise[i] != null) {
-                totalEarning += allCruise[i].getTicketPrice();
+                overAllEarning += allCruise[i].totalEarning();
                 output += allCruise[i].toString() + "\n";
-            }
+            
         }
 
         output += "\n" + "Total Cruise: " + cruise.getCurrentNumOfCruise() + "\n";
-        output += "Total Earning: " + "$" + (totalEarning);
+        output += "Total Earning: " + "$" + (overAllEarning);
         JOptionPane.showMessageDialog(null, output);
     }
 
