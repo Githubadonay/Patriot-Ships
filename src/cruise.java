@@ -1,9 +1,10 @@
 public class cruise {
     private String cruiseID;
     private String route;
-    private double ticketPrice;
+    private int ticketPrice;
     private int ticketSold;
-    public static int currentNumOfPassengers;
+    public static int currentNumOfCruise;
+    public static int maxNumOfPassenger = 300;
 
     // public static int
 
@@ -12,19 +13,21 @@ public class cruise {
         this.route = "";
         this.ticketPrice = 0;
         this.ticketSold = 0;
-        currentNumOfPassengers++;
+        currentNumOfCruise++;
+        ticketSold++;
     };
 
-    cruise(String cruiseID, String route, double ticketPrice, int ticketSold) {
+    cruise(String cruiseID, String route, int ticketPrice, int ticketSold) {
         this.cruiseID = cruiseID;
         this.route = route;
         this.ticketPrice = ticketPrice;
         this.ticketSold = ticketSold;
-        currentNumOfPassengers++;
+        currentNumOfCruise++;
+        ticketSold++;
     }
 
     // get
-    public String getCuiseID() {
+    public String getCruiseID() {
         return this.cruiseID;
     }
 
@@ -32,7 +35,7 @@ public class cruise {
         return this.route;
     }
 
-    public double getTicketPrice() {
+    public int getTicketPrice() {
         return this.ticketPrice;
     }
 
@@ -40,46 +43,52 @@ public class cruise {
         return ticketSold;
     }
 
-    public static int getCurrentNumOfPassengers() {
-        return currentNumOfPassengers;
+    public static int getCurrentNumOfCruise() {
+        return currentNumOfCruise;
     }
 
     // set
     public void setCruiseID(String cruiseID) {
-        if (!cruiseID.equals(""))
-            this.cruiseID = cruiseID;
+        if (cruiseID.equals("") || cruiseID.length() != 5)
+            this.cruiseID = cruiseID; 
+            else
+            throw new IllegalArgumentException("Cruise ID can not be empty, and Must be 5 Chararcters long ");
     }
 
     public void setRoute(String route) {
         if (!route.equals(""))
             this.route = route;
+            else
+            throw new IllegalArgumentException("Route can not be empty");
     }
 
-    public void setTicketPrice(double ticketPrice) {
-        if (ticketPrice > 0) {
+    public void setTicketPrice(int ticketPrice) {
+        if (ticketPrice > 0)
             this.ticketPrice = ticketPrice;
-        }
+            else
+            throw new IllegalArgumentException("Ticket price can not be empty");
     }
 
     public void setTicketSold(int ticketSold) {
-        if (ticketSold > 0) {
+        if (ticketSold > 0 && ticketSold < maxNumOfPassenger) 
             this.ticketSold = ticketSold;
-        }
+            else
+            throw new IllegalArgumentException("Ticket sold can not be empty");
+            ticketSold--;
     }
 
-    public void setCurrentNumOfPassengers(int currentNumOfPassengers) {
-        currentNumOfPassengers--;
+    public static void updateNumOfCruise() {
+        currentNumOfCruise--;
     }
 
     // calculation for the earing of ticker sold. ticketCost * ticketSold
-    public double totalEarning() {
+    public int totalEarning() {
         return ticketPrice * ticketSold;
     }
 
     // toString
     public String toString() {
-        return "Cruise ID | Cruise Route | Ticket Cost | Ticket sold | Total Earning\n"
-                + getCuiseID() + getRoute() + getTicketPrice() + getTicketSold() + totalEarning() + "\n";
+        return getCruiseID()  + " | " + getRoute()  + " | " + "$"+ getTicketPrice()   + " | " + getTicketSold()   + " | "+  "$"+ totalEarning();
     };
 
 }
