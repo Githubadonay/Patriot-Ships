@@ -49,7 +49,7 @@ public class cruise {
 
     // set
     public void setCruiseID(String cruiseID) {
-        if (cruiseID.equals("") || cruiseID.length() != 5)
+        if (cruiseID.length() == 5)
             this.cruiseID = cruiseID; 
             else
             throw new IllegalArgumentException("Cruise ID can not be empty, and Must be 5 Chararcters long ");
